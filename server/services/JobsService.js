@@ -1,32 +1,32 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
-class CarsService {
+class JobsService {
   async getAll(query = {}) {
-    return await dbContext.Cars.find(query)
+    return await dbContext.Jobs.find(query)
 
   }
 
   async getById(id) {
-    let data = await dbContext.Cars.findOne({ _id: id })
+    let data = await dbContext.Jobs.findOne({ _id: id })
     if (!data) {
       throw new BadRequest("Invalid Id")
     }
     return data
   }
   async create(body) {
-    return await dbContext.Cars.create(body)
+    return await dbContext.Jobs.create(body)
   }
   async edit(body) {
     // FindOneAndUpdate takes the find object, then the update, then says return the post updated object
-    let data = await dbContext.Cars.findOneAndUpdate({ _id: body.id }, body, { new: true })
+    let data = await dbContext.Jobs.findOneAndUpdate({ _id: body.id }, body, { new: true })
     if (!data) {
       throw new BadRequest("Invalid Id")
     }
     return data
   }
   async delete(id) {
-    let data = await dbContext.Cars.findOneAndDelete({ _id: id })
+    let data = await dbContext.Jobs.findOneAndDelete({ _id: id })
     if (!data) {
       throw new BadRequest("Invalid Id")
     }
@@ -37,4 +37,4 @@ class CarsService {
 
 }
 
-export const carsService = new CarsService();
+export const jobsService = new JobsService();

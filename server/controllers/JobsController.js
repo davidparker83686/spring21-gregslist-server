@@ -1,19 +1,19 @@
-import { carsService } from "../services/CarsService";
+import { jobsService } from "../services/JobsService";
 import BaseController from "../utils/BaseController";
 
-export class CarsController extends BaseController {
+export class JobsController extends BaseController {
   constructor() {
-    super('/api/cars')
+    super('/api/jobs')
     this.router
       .get("/", this.getAll)
       .get("/:id/", this.getById)
       .post("", this.create)
-      .put("/:id", this.edit) // ...../api/cars/_____
+      .put("/:id", this.edit) // ...../api/jobs/_____
       .delete("/:id", this.delete)
   }
   async getAll(req, res, next) {
     try {
-      let data = await carsService.getAll(req.query)
+      let data = await jobsService.getAll(req.query)
       return res.send(data)
     } catch (error) {
       next(error)
@@ -21,7 +21,7 @@ export class CarsController extends BaseController {
   }
   async getById(req, res, next) {
     try {
-      let data = await carsService.getById(req.params.id)
+      let data = await jobsService.getById(req.params.id)
       return res.send(data)
     } catch (error) {
       next(error)
@@ -29,7 +29,7 @@ export class CarsController extends BaseController {
   }
   async create(req, res, next) {
     try {
-      let data = await carsService.create(req.body)
+      let data = await jobsService.create(req.body)
       return res.send(data)
     } catch (error) {
       next(error)
@@ -39,7 +39,7 @@ export class CarsController extends BaseController {
     try {
       // change whatever is in the url to be the id on the body
       req.body.id = req.params.id
-      let data = await carsService.edit(req.body)
+      let data = await jobsService.edit(req.body)
       return res.send(data)
     } catch (error) {
       next(error)
@@ -47,7 +47,7 @@ export class CarsController extends BaseController {
   }
   async delete(req, res, next) {
     try {
-      let data = await carsService.delete(req.params.id)
+      let data = await jobsService.delete(req.params.id)
       return res.send(data)
     } catch (error) {
       next(error)
