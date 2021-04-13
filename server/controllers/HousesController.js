@@ -8,7 +8,7 @@ export class HousesController extends BaseController {
       .get("/", this.getAll)
       .get("/:id/", this.getById)
       .post("", this.create)
-      .put("/:id", this.edit) // ...../api/houses/_____
+      .put("/:id", this.edit)
       .delete("/:id", this.delete)
   }
   async getAll(req, res, next) {
@@ -37,7 +37,6 @@ export class HousesController extends BaseController {
   }
   async edit(req, res, next) {
     try {
-      // change whatever is in the url to be the id on the body
       req.body.id = req.params.id
       let data = await housesService.edit(req.body)
       return res.send(data)
